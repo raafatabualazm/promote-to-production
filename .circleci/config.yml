@@ -15,6 +15,7 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
+      - checkout
       - run:
           name: Create new bucket
           command: |
