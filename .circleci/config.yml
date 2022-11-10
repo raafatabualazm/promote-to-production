@@ -19,7 +19,7 @@ jobs:
           name: Create new bucket
           command: |
             aws cloudformation deploy \
-            --template-file 'Excercise 8/bucket.yml' \
+            --template-file bucket.yml \
             --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
             --parameter-overrides MyBucketName="mybucket-${CIRCLE_WORKFLOW_ID:0:7}"
   
@@ -49,7 +49,7 @@ jobs:
           name: Execute cloudfront.yml
           command: |
             aws cloudformation deploy \
-            --template-file 'Excercise 8'/Distribution.yml \
+            --template-file Distribution.yml \
             --stack-name production-distro \
             --parameter-overrides PipelineID="mybucket-${CIRCLE_WORKFLOW_ID:0:7}"
       - run: aws s3 sync . s3://mybucket-${CIRCLE_WORKFLOW_ID:0:7} --delete
